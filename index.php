@@ -1,23 +1,35 @@
 <?php
+
+
 require_once 'vendor/autoload.php';
 
-$router = new AltoRouter();//instance du Routeur
+use App\ControllerUser;
+
+// use Faker;
+
+$router = new AltoRouter(); //instance du Routeur
+// $faker = Faker\Factory::create();
 
 
-$router->setBasePath("/Projets/superWeek");//definir le chemin racine du projet ;
+$router->setBasePath("/Projets/superWeek"); //definir le chemin racine du projet ;
 // var_dump($router);
 
 $router->map('GET', '/', function () {
     echo "<h1>Bienvenu sur l'accueil</h1>";
-}, '/');//cartographie de nos route
+}, '/'); //cartographie de nos route
 
-$router->map('GET','/users',function(){
+$router->map('GET', '/users', function () {
     echo "<h1>Bienvenu sur la liste des Utilisateurs </h1>";
-},'users');
+}, 'users');
 
-$router->map('GET','/users1',function(){
+$router->map('GET', '/users1', function () {
     echo "<h1>Bienvenu sur la page de l'utilisateur 1 </h1>";
-},'users1');
+}, 'users1');
+
+$router->map('GET', '/createUser', function () {
+    $controllerUser =  new ControllerUser();
+    $controllerUser->insertUserFake();
+}, "createUser");
 
 $match = $router->match();
 
