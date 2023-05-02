@@ -33,6 +33,10 @@ $router->map('GET', '/users/createUser', function () {
     echo "<h1>page to Create User</h1>";
 }, "/users/createUser");
 
+$router->map('GET','/users/register',function(){
+        require_once(__DIR__.'/src/View.php');
+},'/users/register');
+
 $match = $router->match();
 
 if (is_array($match) && is_callable($match['target'])) {
