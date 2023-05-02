@@ -2,7 +2,7 @@ active la récriture d'url ;
 
 
 
-install composer ;
+install composer init sur le projet ;
 
 install altorouter; 
 get setBasePath(racine);
