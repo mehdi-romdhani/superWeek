@@ -3,6 +3,7 @@ require_once 'vendor/autoload.php';
 
 $router = new AltoRouter();//instance du Routeur
 
+
 $router->setBasePath("/Projets/superWeek");//definir le chemin racine du projet ;
 // var_dump($router);
 
