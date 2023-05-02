@@ -19,17 +19,19 @@ $router->map('GET', '/', function () {
 }, '/'); //cartographie de nos route
 
 $router->map('GET', '/users', function () {
-    echo "<h1>Bienvenu sur la liste des Utilisateurs </h1>";
+    $controllerUser = new ControllerUser();
+    $controllerUser->showAllUser();
 }, 'users');
 
 $router->map('GET', '/users1', function () {
     echo "<h1>Bienvenu sur la page de l'utilisateur 1 </h1>";
 }, 'users1');
 
-$router->map('GET', '/createUser', function () {
+$router->map('GET', '/users/createUser', function () {
     $controllerUser =  new ControllerUser();
     $controllerUser->insertUserFake();
-}, "createUser");
+    echo "<h1>page to Create User</h1>";
+}, "/users/createUser");
 
 $match = $router->match();
 

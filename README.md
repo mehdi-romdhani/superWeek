@@ -11,3 +11,8 @@ get setBasePath(racine);
 
 $routeur->map ;
 
+git rm vendor -r ---cached // fake sup of git 
+
+'^' au minumum de la vers 
+
+github cli

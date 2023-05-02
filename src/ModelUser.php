@@ -35,6 +35,16 @@ class ModelUser
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':firstname', $firstname);
     $stmt->bindParam(':lastname', $lastname);
+    $stmt->execute(); 
+  }
+
+  function showUser(){
+    $query = "SELECT * FROM user";
+
+    $stmt = $this->conn->prepare($query);
     $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result ;
+
   }
 }
