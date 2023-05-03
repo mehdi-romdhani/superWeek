@@ -4,8 +4,8 @@
 require_once 'vendor/autoload.php';
 
 use App\ControllerUser;
+use App\AuthController;
 
-// use Faker;
 
 $router = new AltoRouter(); //instance du Routeur
 // $faker = Faker\Factory::create();
@@ -33,9 +33,17 @@ $router->map('GET', '/users/createUser', function () {
     echo "<h1>page to Create User</h1>";
 }, "/users/createUser");
 
-$router->map('GET','/users/register',function(){
-        require_once(__DIR__.'/src/View.php');
-},'/users/register');
+$router->map('GET', '/users/register', function () {
+    require_once(__DIR__ . '/src/View.php');
+}, '/users/register');
+
+$router->map('POST', '/users/register', function () {
+    require_once(__DIR__ . '/src/View.php');
+    $controllerRegister = new AuthController();
+    if (isset($_POST['submit'])) {
+        $controllerRegister->register($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password']);
+    }
+}, '/users/registerValidForm');
 
 $match = $router->match();
 
