@@ -14,10 +14,12 @@ class ControllerUser{
 
         for ($i = 0; $i < 15 ; $i++) {
 
+            
             $firstname = $faker->firstname();
             $lastname = $faker->lastname();
             $email = strtolower($firstname . $lastname . '@' . $faker->freeEmailDomain());
-            $modelUser->insertFakeUser($email,$firstname,$lastname);
+            $password = password_hash($faker->password(),PASSWORD_DEFAULT);
+            $modelUser->insertFakeUser($email,$firstname,$lastname,$password);
 
         }
 

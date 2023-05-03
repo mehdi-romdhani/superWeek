@@ -1,5 +1,5 @@
 <?php
-
+//dont forget to type var !!! 
 namespace App;
 
 use PDO;
@@ -24,17 +24,17 @@ class ModelUser
     }
   }
 
-  function insertUser()
-  {
-  }
+ 
 
-  function insertFakeUser($email, $firstname, $lastname)
+  function insertFakeUser(string $email,string $firstname,string $lastname,string $password) :void 
   {
 
-    $stmt = $this->conn->prepare('INSERT INTO user(email,first_name,last_name) VALUES(:email,:firstname,:lastname)');
+    $stmt = $this->conn->prepare('INSERT INTO user(email,first_name,last_name,password) VALUES(:email,:firstname,:lastname,:password)');
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':firstname', $firstname);
     $stmt->bindParam(':lastname', $lastname);
+    $stmt->bindParam(':password', $password);
+
     $stmt->execute(); 
   }
 
@@ -47,4 +47,34 @@ class ModelUser
     return $result ;
 
   }
+
+  function insertUser(string $email,string $firstname,string $lastname,string $password) :void
+  {
+    
+    $query = "INSERT INTO user(email,first_name,last_name,password) VALUE(:email,:firstname,:lastname,:password)";
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':email',$email);
+    $stmt->bindParam(':firstname',$firstname);
+    $stmt->bindParam(':lastname',$lastname);
+    $stmt->bindParam(':password',$password);
+    $stmt->execute();
+  }
+
+
+  function rowCountUser(string $email){
+
+    $queryCheck ="SELECT * FROM user WHERE email = :email";
+    $stmt1 = $this->conn->prepare($queryCheck);
+    $stmt1->bindParam(':email',$email);
+    $stmt1->execute();
+    $result = $stmt1->rowCount();
+    return $result;
+
+  }
+
+
+
+
+
+  
 }
