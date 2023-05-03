@@ -33,17 +33,33 @@ $router->map('GET', '/users/createUser', function () {
     echo "<h1>page to Create User</h1>";
 }, "/users/createUser");
 
-$router->map('GET', '/users/register', function () {
+$router->map('GET', '/users/register', function () {//register
     require_once(__DIR__ . '/src/View.php');
 }, '/users/register');
 
-$router->map('POST', '/users/register', function () {
+$router->map('POST', '/users/register', function () {//registerForm
     require_once(__DIR__ . '/src/View.php');
     $controllerRegister = new AuthController();
     if (isset($_POST['submit'])) {
-        $controllerRegister->register($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password']);
+        $controllerRegister->register($_POST['email'], $_POST['firstname'], $_POST['lastname'], $_POST['password']);
     }
 }, '/users/registerValidForm');
+
+$router->map('GET', '/users/login',function(){
+    require_once(__DIR__.'/src/ViewLogin.php');
+},'/users/login');
+
+$router->map('POST', '/users/login',function(){
+    require_once(__DIR__.'/src/ViewLogin.php');
+    $controllerRegister = new AuthController();
+    if (isset($_POST['submit'])) {
+        $controllerRegister->login($_POST['email'],$_POST['password']);
+    }
+},'/users/loginOk');
+
+
+
+
 
 $match = $router->match();
 

@@ -60,10 +60,19 @@ class ModelUser
     $stmt->execute();
   }
 
+  function login($email){
+    $queryLogin = "SELECT password FROM user WHERE email =:email ";
+    $stmt = $this->conn->prepare($queryLogin);
+    $stmt->bindParam(':email',$email);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result;
+  }
+
 
   function rowCountUser(string $email){
 
-    $queryCheck ="SELECT * FROM user WHERE email = :email";
+    $queryCheck = "SELECT * FROM user WHERE email = :email";
     $stmt1 = $this->conn->prepare($queryCheck);
     $stmt1->bindParam(':email',$email);
     $stmt1->execute();
@@ -71,6 +80,7 @@ class ModelUser
     return $result;
 
   }
+
 
 
 
