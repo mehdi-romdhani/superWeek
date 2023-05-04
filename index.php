@@ -15,7 +15,7 @@ $router->setBasePath("/Projets/superWeek"); //definir le chemin racine du projet
 // var_dump($router);
 
 $router->map('GET', '/', function () {
-    echo "<h1>Bienvenu sur l'accueil</h1>";
+    require_once(__DIR__.'/home.php');
 }, '/'); //cartographie de nos route
 
 $router->map('GET', '/users', function () {
